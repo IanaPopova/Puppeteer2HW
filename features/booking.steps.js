@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-const { Given, When, Then, Before, After } = require("cucumber");
+const { Given, When, Then, Before, After, setDefaultTimeout } = require("cucumber");
 const { clickElement, getText } = require("../lib/commands.js");
 const assert = require("assert");
 
@@ -47,7 +47,7 @@ When("The user selects a VIP seat", async function () {
 
 When("The user sees booking details", async function () {
   await clickElement(page, ".acceptin-button");
-  const detailsText = await getText(page, ".ticket__info-wrapper p:nth-child(2)");
+  const detailsText = await getText(page, ".ticket__check-title");
   assert.ok(detailsText.includes("Вы выбрали билеты:"), `Expected booking details but got "${detailsText}"`);
 });
 
